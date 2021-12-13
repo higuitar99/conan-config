@@ -1,6 +1,7 @@
-[build_requires]
-mingw-w64/8.1
-msys2/20210105
+toolchain=C:/msys64/mingw64/bin
+target_host=x86_64-w64-mingw32
+cc_compiler=gcc
+cxx_compiler=g++
 
 [settings]
 os_build=Windows
@@ -9,7 +10,18 @@ arch=x86_64
 arch_build=x86_64
 build_type=Debug
 compiler=gcc
-compiler.version=10.3.0
+compiler.version=10.3
 compiler.libcxx=libstdc++11
 compiler.threads=posix
 compiler.exception=sjlj
+
+[env]
+CONAN_CMAKE_FIND_ROOT_PATH=$toolchain
+CHOST=$target_host
+AR=$toolchain/ar
+AS=$toolchain/as
+RANLIB=$toolchain/$target_host-ranlib
+CC=$toolchain/$target_host-$cc_compiler
+CXX=$toolchain/$target_host-$cxx_compiler
+STRIP=$toolchain/strip
+RC=$toolchain/windres
